@@ -1,6 +1,9 @@
-const { ApolloServer, gql } = require('apollo-server');
-const mongoose  = require('mongoose');
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const { ApolloServer, gql } = require('apollo-server-express');
 const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
 const User = require("./modules/user");
 
 const typeDefs = gql`
@@ -54,9 +57,16 @@ const resolvers = {
 	}
 }
 
-dotenv.config()
+const server_3 = new ApolloServer({ typeDefs, resolvers });
+const app = express();
 
-const server = new ApolloServer({ typeDefs, resolvers });
+server_3.applyMiddleware({ app });
+
+app.use(cors());
+app.use(bodyParser.json());
+
+
+dotenv.config()
 
 const PORT = process.env.PORT || 5000;
 mongoose.connect(`mongodb+srv://graphqluser:${process.env.MONGO_PASSWORD}@cluster0.iafgv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {

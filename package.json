@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
-    "server": "nodemon server/server.js",
+    "start": "node server/server_2.js",
+    "server": "nodemon server/server_2.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-server": "2.17.0",
+    "apollo-server-express": "2.17.0",
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
