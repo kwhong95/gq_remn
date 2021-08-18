@@ -6,7 +6,9 @@ const { buildSchema } = require('graphql');
 const expressPlayground = require('graphql-playground-middleware-express').default
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.get('/playground', expressPlayground({ endpoint: '/graphql' }));
 
